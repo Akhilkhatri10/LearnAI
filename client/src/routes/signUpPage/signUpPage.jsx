@@ -6,7 +6,7 @@ const SignUpPage = () => {
     <div className="h-full flex items-center justify-center">
       <SignUp
         path="/sign-up"
-        signInUrl="sign-in"
+        signInUrl="/sign-in"
       />
     </div>
   );
