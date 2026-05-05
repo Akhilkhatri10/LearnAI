@@ -39,7 +39,7 @@ const model = {
           `${import.meta.env.VITE_API_URL}/api/ask`,
           {
             method: "POST",
-            credentials: "include",
+            // credentials: "include",
             headers: {
               "Content-Type": "application/json",
             },

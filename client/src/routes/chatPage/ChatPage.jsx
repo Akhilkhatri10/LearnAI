@@ -14,7 +14,7 @@ const ChatPage = () => {
     queryKey: ["chat", chatId],
     queryFn: () =>
       fetch(`${import.meta.env.VITE_API_URL}/api/chats/${chatId}`, {
-        credentials: "include",
+        // credentials: "include",
       }).then((res) => res.json()),
   });
 
