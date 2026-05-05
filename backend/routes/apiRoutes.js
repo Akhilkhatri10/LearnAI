@@ -4,6 +4,7 @@ import { getAuth } from "@clerk/express";
 import Chat from "../models/chat.js";
 import UserChats from "../models/userChats.js";
 import imagekit from "../utils/imagekit.js";
+import { requireAuth } from "@clerk/express";
 
 const router = Router();
 
@@ -12,8 +13,8 @@ router.get("/upload", (req, res) => {
     res.send(result);
 });
 
-router.post("/chats", async (req, res) => {
-    const { userId } = getAuth(req);
+router.post("/chats", requireAuth(), async (req, res) => {
+    const { userId } = req.auth; 
     const { text } = req.body;
 
     try {
@@ -39,6 +40,7 @@ router.post("/chats", async (req, res) => {
             });
 
             await newUserChats.save();
+            
         } else {
             await UserChats.updateOne(
                 { userId },
@@ -61,8 +63,8 @@ router.post("/chats", async (req, res) => {
     }
 });
 
-router.get("/userchats", async (req, res) => {
-    const { userId } = getAuth(req);
+router.get("/userchats", requireAuth(), async (req, res) => {
+    const { userId } = req.auth;
 
     try {
         const userChats = await UserChats.findOne({ userId });
@@ -82,8 +84,8 @@ router.get("/userchats", async (req, res) => {
     }
 });
 
-router.get("/chats/:id", async (req, res) => {
-    const { userId } = getAuth(req);
+router.get("/chats/:id", requireAuth(), async (req, res) => {
+    const { userId } = req.auth;
 
     try {
         const chat = await Chat.findOne({ _id: req.params.id, userId });
@@ -94,8 +96,8 @@ router.get("/chats/:id", async (req, res) => {
     }
 });
 
-router.put("/chats/:id", async (req, res) => {
-    const { userId } = getAuth(req);
+router.put("/chats/:id", requireAuth(), async (req, res) => {
+    const { userId } = req.auth;
     const { question, answer, img } = req.body;
 
     const newItems = [
