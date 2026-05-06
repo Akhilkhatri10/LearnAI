@@ -21,7 +21,8 @@ const model = {
                 {
                   type: "image_url",
                   image_url: {
-                    url: `${process.env.IMAGE_KIT_ENDPOINT}/${msg.img}`,
+                    // url: `${process.env.IMAGE_KIT_ENDPOINT}/${msg.img}`,
+                    url: `${import.meta.env.VITE_IMAGE_KIT_ENDPOINT}/${msg.img}`,
                   },
                 },
               ],
