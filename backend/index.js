@@ -25,6 +25,10 @@ app.use((err, req, res, next) => {
   res.status(401).send("Unauthenticated!");
 });
 
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 app.listen(port, async () => {
   await connectDB();
   console.log(`Server running on ${port}`);

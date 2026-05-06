@@ -1,10 +1,9 @@
 // routes/apiRoutes.js
 import { Router } from "express";
-import { getAuth } from "@clerk/express";
 import Chat from "../models/chat.js";
 import UserChats from "../models/userChats.js";
 import imagekit from "../utils/imagekit.js";
-import { requireAuth } from "@clerk/express";
+import { requireAuth, getAuth } from "@clerk/express";
 
 const router = Router();
 
@@ -14,10 +13,7 @@ router.get("/upload", (req, res) => {
 });
 
 router.post("/chats", requireAuth(), async (req, res) => {
-    // const { userId } = req.auth; 
-    console.log(req.auth);
-
-    const userId = req.auth.userId;
+    const { userId } = getAuth(req);
 
     console.log("USER ID:", userId);
 
@@ -70,10 +66,7 @@ router.post("/chats", requireAuth(), async (req, res) => {
 });
 
 router.get("/userchats", requireAuth(), async (req, res) => {
-    // const { userId } = req.auth;
-    console.log(req.auth);
-
-    const userId = req.auth.userId;
+    const { userId } = getAuth(req);
 
     console.log("USER ID:", userId);
 
@@ -96,10 +89,7 @@ router.get("/userchats", requireAuth(), async (req, res) => {
 });
 
 router.get("/chats/:id", requireAuth(), async (req, res) => {
-    // const { userId } = req.auth;
-    console.log(req.auth);
-
-    const userId = req.auth.userId;
+    const { userId } = getAuth(req);
 
     console.log("USER ID:", userId);
 
@@ -113,10 +103,7 @@ router.get("/chats/:id", requireAuth(), async (req, res) => {
 });
 
 router.put("/chats/:id", requireAuth(), async (req, res) => {
-    // const { userId } = req.auth;
-    console.log(req.auth);
-
-    const userId = req.auth.userId;
+    const { userId } = getAuth(req);
 
     console.log("USER ID:", userId);
 
