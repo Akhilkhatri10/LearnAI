@@ -14,7 +14,13 @@ router.get("/upload", (req, res) => {
 });
 
 router.post("/chats", requireAuth(), async (req, res) => {
-    const { userId } = req.auth; 
+    // const { userId } = req.auth; 
+    console.log(req.auth);
+
+    const userId = req.auth.userId;
+
+    console.log("USER ID:", userId);
+
     const { text } = req.body;
 
     try {
@@ -64,7 +70,12 @@ router.post("/chats", requireAuth(), async (req, res) => {
 });
 
 router.get("/userchats", requireAuth(), async (req, res) => {
-    const { userId } = req.auth;
+    // const { userId } = req.auth;
+    console.log(req.auth);
+
+    const userId = req.auth.userId;
+
+    console.log("USER ID:", userId);
 
     try {
         const userChats = await UserChats.findOne({ userId });
@@ -85,7 +96,12 @@ router.get("/userchats", requireAuth(), async (req, res) => {
 });
 
 router.get("/chats/:id", requireAuth(), async (req, res) => {
-    const { userId } = req.auth;
+    // const { userId } = req.auth;
+    console.log(req.auth);
+
+    const userId = req.auth.userId;
+
+    console.log("USER ID:", userId);
 
     try {
         const chat = await Chat.findOne({ _id: req.params.id, userId });
@@ -97,7 +113,13 @@ router.get("/chats/:id", requireAuth(), async (req, res) => {
 });
 
 router.put("/chats/:id", requireAuth(), async (req, res) => {
-    const { userId } = req.auth;
+    // const { userId } = req.auth;
+    console.log(req.auth);
+
+    const userId = req.auth.userId;
+
+    console.log("USER ID:", userId);
+
     const { question, answer, img } = req.body;
 
     const newItems = [
